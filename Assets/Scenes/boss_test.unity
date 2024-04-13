@@ -676,7 +676,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   missionIcon: {fileID: 1671159286}
-  hasMission: 0
+  hasMission: 1
   summonSent: 0
   dialogOpen: 0
   Name: Steve
