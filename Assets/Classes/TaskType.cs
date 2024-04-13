@@ -18,7 +18,7 @@ namespace Classes
                 case TaskType.Eula:
                     return Resources.Load("Prefab/Minigames/EULA", typeof(GameObject)) as GameObject;
                 case TaskType.Folders:
-                    return null;
+                    return Resources.Load("Prefab/Minigames/Folders", typeof(GameObject)) as GameObject;
                 default:
                     return null;
             }

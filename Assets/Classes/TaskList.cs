@@ -35,16 +35,25 @@ namespace Classes
             var computers = GameObject.FindGameObjectsWithTag("ComputerWithTask");
             foreach (var computer in computers)
             {
+                if (computer.name.Contains("Eula"))
+                {
+                    Tasks.Add(new EulaTask(new DateTime().AddMinutes(2)));
+                }
+                else
+                {
+                    Tasks.Add(new FoldersTask(new DateTime().AddMinutes(2)));
+                }
+                /*
                 switch (UnityEngine.Random.value < 0.5 ? 0 : 1)
                 {
                     case 0:
                         Tasks.Add(new EulaTask(new DateTime().AddMinutes(2)));
                         break;
                     case 1:
-                        Tasks.Add(new EulaTask(new DateTime().AddMinutes(2)));
-                        // Tasks.Add(new FoldersTask(new DateTime().AddMinutes(2)));
+                        Tasks.Add(new FoldersTask(new DateTime().AddMinutes(2)));
                         break;
                 }
+                */
                 TasksOfComputers.Add(computer, Tasks[^1]);
             }
             var text = GetComponent<TextMeshProUGUI>();

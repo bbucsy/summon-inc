@@ -6,18 +6,11 @@ using UnityEngine;
 
 public class FoldersTask : Task
 {
-    private int FolderCount { get; set; }
-    private int FilesCount { get; set; }
-    private List<int> FoldersOfFiles { get; set; }
+    public List<Color> FolderColors { get; set; } = new List<Color>();
+    public List<Vector3> FilePositions { get; set; } = new List<Vector3>();
+    public List<int> FoldersOfFiles { get; set; } = new List<int>();
     
     public FoldersTask(DateTime deadline) : base("Folders", TaskType.Folders, deadline)
     {
-        FolderCount = 5;
-        FilesCount = 10;
-        FoldersOfFiles = new List<int>();
-        for (int i = 0; i < FilesCount; i++)
-        {
-            FoldersOfFiles.Add(UnityEngine.Random.Range(0, FolderCount));
-        }
     }
 }

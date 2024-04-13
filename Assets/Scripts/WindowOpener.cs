@@ -1,23 +1,27 @@
 using System;
+using Classes;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
 public class OpenWindow : MonoBehaviour
 {
-
     public Canvas canvas;
     public GameObject window;
 
-    public void CreateWindow(GameObject content)
+    public GameObject CreateWindow(GameObject content)
     {
         var component = Instantiate(window, canvas.transform);
-        var x = Random.value * 300;
-        var y = Random.value * 300;
-        component.transform.position = new Vector3(
-            x,
-            y
+        component.GetComponent<RectTransform>().localScale = Vector3.one;
+        component.SetActive(true);
+        var exitButton = component.GetComponentInChildren<Button>();
+        exitButton.onClick.AddListener(() =>
+            {
+                TaskList.Instance.TaskWindowClosed();
+                Destroy(component);
+            }
         );
         foreach (Transform child in component.transform)
         {
@@ -25,12 +29,10 @@ public class OpenWindow : MonoBehaviour
             {
                 continue;
             }
-            var textObject = Instantiate(new GameObject(), child, false);
-            textObject.AddComponent<TextMeshProUGUI>();
-            textObject.GetComponent<TextMeshProUGUI>().text = "Test" + Math.Round(Random.value * 10000);
+
+            return Instantiate(content, child, false);
         }
-        
-    
+
+        return null;
     }
-    
 }
