@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - WindowContent
+  - Task
   layers:
   - Default
   - TransparentFX
