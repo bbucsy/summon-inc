@@ -6,6 +6,7 @@ using UnityEngine;
 public class Play : MonoBehaviour
 {
 
+    public Rigidbody2D rb;
     public float speed = 5;
 
     // Update is called once per frame
@@ -16,9 +17,6 @@ public class Play : MonoBehaviour
 
     private void FixedUpdate()
     {
-        transform.position += new Vector3(
-            Input.GetAxisRaw("Horizontal") * speed * Time.deltaTime,
-            Input.GetAxisRaw("Vertical") * speed * Time.deltaTime
-        );
+        rb.velocity = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")) * speed;
     }
 }
