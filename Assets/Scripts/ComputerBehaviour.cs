@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Classes;
 using DefaultNamespace;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -17,7 +18,6 @@ public class ComputerBehaviour : MonoBehaviour
     public Transform keyboardIconSpritePosition;
     public float lerpSpeed = 2f;
     public Canvas Canvas;
-    public GameObject miniGamePrefab;
     
     
     // Start is called before the first frame update
@@ -47,9 +47,24 @@ public class ComputerBehaviour : MonoBehaviour
             if (!_minigameShowing)
             {
                 _minigameShowing = true;
+                var task = TaskList.Instance.TasksOfComputers[this.gameObject];
+                var miniGamePrefab = task.Type.Prefab();
                 var minigame = Instantiate(miniGamePrefab,Canvas.transform);
                 var minigameScript = minigame.GetComponent<IMinigame>();
-                minigameScript.OnFinish += (sender, args) => _minigameAvailable = false;
+                minigameScript.Task = task;
+                TaskList.Instance.OnTaskFinished += (sender, finishedTask) =>
+                {
+                    if (finishedTask == task)
+                    {
+                        // Debug.Log("TASK FINISHED: " + finishedTask);
+                        this._minigameAvailable = false;
+                    }
+                };
+                TaskList.Instance.OnTaskWindowClosed += (sender, args) =>
+                {
+                    // Debug.Log("TASK WINDOW CLOSED");
+                    _minigameShowing = false;
+                };
 
                 minigame.GetComponent<RectTransform>()?.position.Set(0,0,0);
 

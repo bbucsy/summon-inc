@@ -9,12 +9,12 @@ namespace Classes
         public bool Completed { get; set; }
         public DateTime Deadline { get; set; }
         public bool HintReceived { get; set; }
-        public GameObject TaskObject { get; set; }
-        public Task(string name, GameObject taskObject, DateTime deadline)
+        public TaskType Type { get; set; }
+        public Task(string name, TaskType type, DateTime deadline)
         {
             Name = name;
-            TaskObject = taskObject;
             Deadline = deadline;
+            Type = type;
             Completed = false;
             HintReceived = false;
         }

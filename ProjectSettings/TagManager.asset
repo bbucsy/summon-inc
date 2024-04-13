@@ -6,6 +6,7 @@ TagManager:
   tags:
   - WindowContent
   - Task
+  - ComputerWithTask
   layers:
   - Default
   - TransparentFX
