@@ -28,7 +28,7 @@ public class TasksManagerBehaviour : MonoBehaviour
         _text.text = "Tasks: " + Tasks.Count;
         foreach (var task in Tasks)
         {
-            _text.text += "\n: " + task.Name + "(" + (task.Completed ? "Completed" : "Not completed") + ")";
+            _text.text += "\n• " + (task.Completed ? "<color=green>" : "<color=red>") + task.Name + "</color>";
         }
     }
 
