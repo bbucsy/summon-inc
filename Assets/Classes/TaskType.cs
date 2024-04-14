@@ -6,6 +6,7 @@ namespace Classes
     public enum TaskType
     {
         Eula,
+        Virus,
         Folders
     }
 
@@ -19,6 +20,8 @@ namespace Classes
                     return Resources.Load("Prefab/Minigames/EULA", typeof(GameObject)) as GameObject;
                 case TaskType.Folders:
                     return Resources.Load("Prefab/Minigames/Folders", typeof(GameObject)) as GameObject;
+                case TaskType.Virus:
+                    return Resources.Load("Prefab/Minigames/Virus", typeof(GameObject)) as GameObject;
                 default:
                     return null;
             }
