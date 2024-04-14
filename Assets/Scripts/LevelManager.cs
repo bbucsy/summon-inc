@@ -30,6 +30,9 @@ public class LevelManager : MonoBehaviour
                         Random.Range(10, 25)
                     ));
                     break;
+                case { } a when a.Contains("Virus"):
+                    taskManager.Tasks.Add(new VirusTask());
+                    break;
                 default:
                     taskManager.Tasks.Add(
                         // Add one at random
