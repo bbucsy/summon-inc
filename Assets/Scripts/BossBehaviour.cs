@@ -8,6 +8,8 @@ using Random = UnityEngine.Random;
 public class BossBehaviour : MonoBehaviour
 {
 
+    private bool _playerInRadius = false;
+    
     public GameObject missionIcon;
 
     public bool hasMission = false;
@@ -25,7 +27,8 @@ public class BossBehaviour : MonoBehaviour
 
     public String[] CasualDialogs;
     public GameObject DialogPrefab;
-    
+
+    public GameObject KeyboardIcon;
     public event EventHandler<BossBehaviour> BossWantsToTalk;
     public event EventHandler<BossBehaviour> BossTalked;
 
@@ -65,21 +68,29 @@ public class BossBehaviour : MonoBehaviour
                 summonSent = true;
                 if (_playerRb.Distance(_circleCollider).distance <= _circleCollider.radius)
                 {
-                    if (!dialogOpen && hasMission)
-                    {
-                        openDialog();
-                    }
+                    _playerInRadius = true;
+                    KeyboardIcon.SetActive(true);
                 }
             }
+        }
+
+        if (Input.GetKeyDown("e") && _playerInRadius && !dialogOpen && hasMission)
+        {
+            openDialog();
         }
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (!dialogOpen && hasMission)
-        {
-            openDialog();
-        }
+
+        _playerInRadius = true;
+        KeyboardIcon.SetActive(true);
+    }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        _playerInRadius = false;
+        KeyboardIcon.SetActive(false);
     }
 
 
