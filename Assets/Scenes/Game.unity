@@ -272,6 +272,10 @@ PrefabInstance:
       propertyPath: m_FlipY
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2165895703897729129, guid: 92c18d3d039cbc940a8b8ac732e38ed9, type: 3}
+      propertyPath: m_Radius
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3436104877286475275, guid: 92c18d3d039cbc940a8b8ac732e38ed9, type: 3}
       propertyPath: Canvas
       value: 
@@ -30744,7 +30748,7 @@ PrefabInstance:
       objectReference: {fileID: 118578595}
     - target: {fileID: 4289925676191913188, guid: 92c18d3d039cbc940a8b8ac732e38ed9, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 33.75
+      value: 34
       objectReference: {fileID: 0}
     - target: {fileID: 4289925676191913188, guid: 92c18d3d039cbc940a8b8ac732e38ed9, type: 3}
       propertyPath: m_LocalPosition.y
