@@ -1,24 +1,20 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using Classes;
 using DefaultNamespace;
-using Unity.VisualScripting;
 using UnityEngine;
 
-public class ComputerBehaviour : MonoBehaviour
+public class VirusComputerBehaviour : MonoBehaviour
 {
 
     private bool _playerInRadius;
     private bool _minigameShowing;
     private bool _minigameAvailable;
     
-    
     public Transform keyBoardIconSprite;
     public Transform keyboardIconSpritePosition;
     public float lerpSpeed = 2f;
     public Canvas Canvas;
-    
     
     // Start is called before the first frame update
     void Start()
@@ -30,11 +26,14 @@ public class ComputerBehaviour : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
-        if (_playerInRadius && _minigameAvailable)
+    {if (_playerInRadius && _minigameAvailable)
         {
             keyBoardIconSprite.position = Vector2.Lerp( keyBoardIconSprite.position, keyboardIconSpritePosition.position, lerpSpeed * Time.deltaTime);
            
+        }
+        else
+        {
+            keyBoardIconSprite.position = Vector3.zero;
         }
         
         if (Input.GetKeyDown("e") && _playerInRadius)
@@ -52,9 +51,8 @@ public class ComputerBehaviour : MonoBehaviour
                 {
                     if (finishedTask == task)
                     {
-                        Debug.Log("TASK FINISHED: " + finishedTask);
+                        // Debug.Log("TASK FINISHED: " + finishedTask);
                         this._minigameAvailable = false;
-                        keyBoardIconSprite.localPosition = Vector2.zero;
                     }
                 };
                 TasksManagerBehaviour.Instance.OnTaskWindowClosed += (sender, args) =>
@@ -79,8 +77,6 @@ public class ComputerBehaviour : MonoBehaviour
     private void OnTriggerExit2D(Collider2D other)
     {
         _playerInRadius = false;
-        keyBoardIconSprite.localPosition = Vector2.zero;
     }
-
- 
+    
 }
