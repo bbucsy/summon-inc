@@ -52,27 +52,19 @@ namespace Classes
             }
             foreach (var computer in computers)
             {
+                // todo: randomly set some tasks to have already received hints
                 if (computer.name.Contains("Eula"))
                 {
                     Tasks.Add(new EulaTask());
                 }
-                else
+                if (computer.name.Contains("Folders"))
                 {
                     Tasks.Add(new FoldersTask(
-                        UnityEngine.Random.Range(2, 5)
+                        UnityEngine.Random.Range(2, 10)
                     ));
+                    // temporary
+                    // Tasks[^1].HintReceived = true;
                 }
-                /*
-                switch (UnityEngine.Random.value < 0.5 ? 0 : 1)
-                {
-                    case 0:
-                        Tasks.Add(new EulaTask(new DateTime().AddMinutes(2)));
-                        break;
-                    case 1:
-                        Tasks.Add(new FoldersTask(new DateTime().AddMinutes(2)));
-                        break;
-                }
-                */
                 TasksOfComputers.Add(computer, Tasks[^1]);
             }
             var text = GetComponent<TextMeshProUGUI>();
