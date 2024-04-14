@@ -7,6 +7,5 @@ namespace DefaultNamespace
     public interface IMinigame
     {
         public Task Task { get; set; }
-        event EventHandler OnFinish ;
     }
 }

@@ -7,13 +7,13 @@ namespace Classes
     {
         public string Name { get; set; }
         public bool Completed { get; set; }
-        public DateTime Deadline { get; set; }
+        // public DateTime Deadline { get; set; }
         public bool HintReceived { get; set; }
         public TaskType Type { get; set; }
-        public Task(string name, TaskType type, DateTime deadline)
+        public Task(string name, TaskType type)
         {
             Name = name;
-            Deadline = deadline;
+            // Deadline = deadline;
             Type = type;
             Completed = false;
             HintReceived = false;

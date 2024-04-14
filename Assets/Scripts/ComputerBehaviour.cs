@@ -52,7 +52,7 @@ public class ComputerBehaviour : MonoBehaviour
                 {
                     if (finishedTask == task)
                     {
-                        // Debug.Log("TASK FINISHED: " + finishedTask);
+                        Debug.Log("TASK FINISHED: " + finishedTask);
                         this._minigameAvailable = false;
                     }
                 };

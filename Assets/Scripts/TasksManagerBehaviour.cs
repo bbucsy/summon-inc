@@ -54,11 +54,13 @@ namespace Classes
             {
                 if (computer.name.Contains("Eula"))
                 {
-                    Tasks.Add(new EulaTask(new DateTime().AddMinutes(2)));
+                    Tasks.Add(new EulaTask());
                 }
                 else
                 {
-                    Tasks.Add(new FoldersTask(new DateTime().AddMinutes(2)));
+                    Tasks.Add(new FoldersTask(
+                        UnityEngine.Random.Range(2, 5)
+                    ));
                 }
                 /*
                 switch (UnityEngine.Random.value < 0.5 ? 0 : 1)

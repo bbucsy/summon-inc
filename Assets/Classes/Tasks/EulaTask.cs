@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class EulaTask : Task
 {
-    public EulaTask(DateTime deadline) : base("EULA", TaskType.Eula, deadline)
+    public EulaTask() : base("EULA", TaskType.Eula)
     {
         
     }

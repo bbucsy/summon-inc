@@ -32,6 +32,4 @@ public class EULABeaviour : MonoBehaviour, IMinigame
         TasksManagerBehaviour.Instance.TaskWindowClosed();
         Destroy(this.gameObject);
     }
-
-    public event EventHandler OnFinish;
 }
