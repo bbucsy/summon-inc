@@ -23,13 +23,13 @@ public class EULABeaviour : MonoBehaviour, IMinigame
 
     public void OnEulaAccepted()
     {
-        TaskList.Instance.TaskFinished(Task);
+        TasksManagerBehaviour.Instance.TaskFinished(Task);
         Destroy(this.gameObject);
     }
 
     public void OnWindowClosed()
     {
-        TaskList.Instance.TaskWindowClosed();
+        TasksManagerBehaviour.Instance.TaskWindowClosed();
         Destroy(this.gameObject);
     }
 

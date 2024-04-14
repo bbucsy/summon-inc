@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Classes.Tasks;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -9,13 +10,14 @@ using Random = System.Random;
 
 namespace Classes
 {
-    public class TaskList : MonoBehaviour
+    public class TasksManagerBehaviour : MonoBehaviour
     {
-        public static TaskList Instance { get; private set; }
+        public static TasksManagerBehaviour Instance { get; private set; }
         public List<Task> Tasks { get; } = new();
         public Dictionary<GameObject, Task> TasksOfComputers { get; } = new Dictionary<GameObject, Task>();
         public event EventHandler<Task> OnTaskFinished;
         public event EventHandler OnTaskWindowClosed; 
+        public int tasksToGenerate = 3;
         
         void Awake()
         {
@@ -32,7 +34,22 @@ namespace Classes
         // Start is called before the first frame update
         void Start()
         {
-            var computers = GameObject.FindGameObjectsWithTag("ComputerWithTask");
+            var allComputers = GameObject.FindGameObjectsWithTag("ComputerWithTask");
+            var computers = new List<GameObject>();
+            for (int i = 0; i < tasksToGenerate; i++)
+            {
+                var computer = allComputers[UnityEngine.Random.Range(0, allComputers.Length)];
+                while (computers.Contains(computer))
+                {
+                    computer = allComputers[UnityEngine.Random.Range(0, allComputers.Length)];
+                }
+                computer.SetActive(true);
+                computers.Add(computer);
+            }
+            foreach (var computer in allComputers.Where(c => !computers.Contains(c)))
+            {
+                computer.SetActive(false);
+            }
             foreach (var computer in computers)
             {
                 if (computer.name.Contains("Eula"))
