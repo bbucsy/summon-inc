@@ -20,6 +20,7 @@ public class ComputerBehaviour : MonoBehaviour
     public Canvas Canvas;
     private TasksManagerBehaviour _tasksManagerBehaviour;
     private GameObject _createdMinigame;
+    private LevelManager _levelManager;
     
     
     // Start is called before the first frame update
@@ -29,6 +30,7 @@ public class ComputerBehaviour : MonoBehaviour
         _minigameShowing = false;
         _minigameAvailable = true;
         _tasksManagerBehaviour = FindFirstObjectByType<TasksManagerBehaviour>();
+        _levelManager = FindFirstObjectByType<LevelManager>();
     }
 
     // Update is called once per frame
@@ -37,9 +39,12 @@ public class ComputerBehaviour : MonoBehaviour
         if (_playerInRadius && _minigameAvailable)
         {
             keyBoardIconSprite.position = Vector2.Lerp( keyBoardIconSprite.position, keyboardIconSpritePosition.position, lerpSpeed * Time.deltaTime);
-           
         }
-        
+
+        if (_levelManager.IsGameOver)
+        {
+            return;
+        }
         if (Input.GetKeyDown("e") && _playerInRadius)
         {
             Debug.unityLogger.Log("E key was pressed");
@@ -82,8 +87,17 @@ public class ComputerBehaviour : MonoBehaviour
     {
         _playerInRadius = false;
         keyBoardIconSprite.localPosition = Vector2.zero;
+        CloseWindow();
+    }
+
+    public void CloseWindow()
+    {
         _tasksManagerBehaviour.TaskWindowClosed();
-        Destroy(_createdMinigame);
+        if (_createdMinigame)
+        {
+            Destroy(_createdMinigame);
+            _createdMinigame = null;
+        }
     }
  
 }

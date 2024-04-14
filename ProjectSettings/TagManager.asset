@@ -7,6 +7,8 @@ TagManager:
   - WindowContent
   - Task
   - ComputerWithTask
+  - NoHintImage
+  - GameOver
   layers:
   - Default
   - TransparentFX
