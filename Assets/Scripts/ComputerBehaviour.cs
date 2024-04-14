@@ -36,10 +36,6 @@ public class ComputerBehaviour : MonoBehaviour
             keyBoardIconSprite.position = Vector2.Lerp( keyBoardIconSprite.position, keyboardIconSpritePosition.position, lerpSpeed * Time.deltaTime);
            
         }
-        else
-        {
-            keyBoardIconSprite.position = Vector3.zero;
-        }
         
         if (Input.GetKeyDown("e") && _playerInRadius)
         {
@@ -82,6 +78,7 @@ public class ComputerBehaviour : MonoBehaviour
     private void OnTriggerExit2D(Collider2D other)
     {
         _playerInRadius = false;
+        keyBoardIconSprite.localPosition = Vector2.zero;
     }
 
  
