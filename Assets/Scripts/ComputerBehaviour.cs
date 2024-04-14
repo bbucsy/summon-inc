@@ -12,12 +12,15 @@ public class ComputerBehaviour : MonoBehaviour
     private bool _playerInRadius;
     private bool _minigameShowing;
     private bool _minigameAvailable;
-    
-    
+    private Canvas _canvas;
+
+
+    public Animator Animator;
     public Transform keyBoardIconSprite;
     public Transform keyboardIconSpritePosition;
     public float lerpSpeed = 2f;
-    public Canvas Canvas;
+    private static readonly int TaskFinished = Animator.StringToHash("taskFinished");
+    
     private TasksManagerBehaviour _tasksManagerBehaviour;
     private GameObject _createdMinigame;
     private LevelManager _levelManager;
@@ -29,6 +32,7 @@ public class ComputerBehaviour : MonoBehaviour
         _playerInRadius = false;
         _minigameShowing = false;
         _minigameAvailable = true;
+        _canvas = FindObjectOfType<Canvas>();
         _tasksManagerBehaviour = FindFirstObjectByType<TasksManagerBehaviour>();
         _levelManager = FindFirstObjectByType<LevelManager>();
     }
@@ -53,17 +57,19 @@ public class ComputerBehaviour : MonoBehaviour
                 _minigameShowing = true;
                 var task = _tasksManagerBehaviour.TasksOfComputers[this.gameObject];
                 var miniGamePrefab = task.Prefab();
-                var minigame = Instantiate(miniGamePrefab,Canvas.transform);
+                var minigame = Instantiate(miniGamePrefab,_canvas.transform);
                 _createdMinigame = minigame;
                 var minigameScript = minigame.GetComponent<IMinigame>();
                 minigameScript.Task = task;
                 _tasksManagerBehaviour.OnTaskFinished += (sender, finishedTask) =>
                 {
-                    if (finishedTask == task)
+                    if (finishedTask != task) return;
+                    
+                    _minigameAvailable = false;
+                    keyBoardIconSprite.localPosition = Vector2.zero;
+                    if (Animator != null)
                     {
-                        Debug.Log("TASK FINISHED: " + finishedTask);
-                        this._minigameAvailable = false;
-                        keyBoardIconSprite.localPosition = Vector2.zero;
+                        Animator.SetTrigger(TaskFinished);
                     }
                 };
                 _tasksManagerBehaviour.OnTaskWindowClosed += (sender, args) =>
