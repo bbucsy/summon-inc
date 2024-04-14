@@ -14171,19 +14171,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7531351604917333961, guid: d4195c09f4ca6c14182a4541745aef30, type: 3}
       propertyPath: m_Size.x
-      value: 1.0445547
+      value: 0.6859999
       objectReference: {fileID: 0}
     - target: {fileID: 7531351604917333961, guid: d4195c09f4ca6c14182a4541745aef30, type: 3}
       propertyPath: m_Size.y
-      value: 1.0212469
+      value: 0.93562174
+      objectReference: {fileID: 0}
+    - target: {fileID: 7531351604917333961, guid: d4195c09f4ca6c14182a4541745aef30, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7531351604917333961, guid: d4195c09f4ca6c14182a4541745aef30, type: 3}
       propertyPath: m_Offset.x
-      value: -0.01340723
+      value: -0.01073122
       objectReference: {fileID: 0}
     - target: {fileID: 7531351604917333961, guid: d4195c09f4ca6c14182a4541745aef30, type: 3}
       propertyPath: m_Offset.y
-      value: -0.48937654
+      value: -0.44656396
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -20898,7 +20902,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4289925676191913188, guid: 2b6c1a2c2780bb44c997316b163b5a1e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 63
+      value: 61
       objectReference: {fileID: 0}
     - target: {fileID: 4289925676191913188, guid: 2b6c1a2c2780bb44c997316b163b5a1e, type: 3}
       propertyPath: m_LocalPosition.y
@@ -22327,8 +22331,8 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   hours: 0
-  minutes: 0
-  seconds: 10
+  minutes: 3
+  seconds: 0
   startAtRuntime: 1
   hoursDisplay: 0
   minutesDisplay: 1
@@ -22339,7 +22343,7 @@ MonoBehaviour:
   textMeshProText: {fileID: 0}
   standardSlider: {fileID: 0}
   dialSlider: {fileID: 528346827}
-  timeRemaining: 10
+  timeRemaining: 180
 --- !u!1 &2043727745
 GameObject:
   m_ObjectHideFlags: 0

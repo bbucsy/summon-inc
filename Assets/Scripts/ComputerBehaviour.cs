@@ -44,6 +44,12 @@ public class ComputerBehaviour : MonoBehaviour
             keyBoardIconSprite.position = Vector2.Lerp( keyBoardIconSprite.position, keyboardIconSpritePosition.position, lerpSpeed * Time.deltaTime);
         }
 
+        if (Input.GetKeyDown(KeyCode.Escape) && IsMinigameShowing)
+        {
+            CloseWindow();
+            return;
+        }
+
         if (_levelManager.IsGameOver)
         {
             return;

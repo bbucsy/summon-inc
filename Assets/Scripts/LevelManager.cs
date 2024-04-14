@@ -27,14 +27,10 @@ public class LevelManager : MonoBehaviour
                     taskManager.Tasks.Add(new EulaTask());
                     break;
                 case { } a when a.Contains("Folders"):
-                    taskManager.Tasks.Add(new FoldersTask(
-                        Random.Range(2, 10)
-                    ));
+                    taskManager.Tasks.Add(new FoldersTask(10));
                     break;
                 case { } a when a.Contains("Os_Update"):
-                    taskManager.Tasks.Add(new OsUpdateTask(
-                        Random.Range(10, 25)
-                    ));
+                    taskManager.Tasks.Add(new OsUpdateTask(25));
                     break;
                 case { } a when a.Contains("Virus"):
                     taskManager.Tasks.Add(new VirusTask());
@@ -45,11 +41,11 @@ public class LevelManager : MonoBehaviour
                         new Task[]
                         {
                             new EulaTask(), 
-                            new FoldersTask(Random.Range(2, 10)),
-                            new OsUpdateTask(Random.Range(10, 25)),
+                            new FoldersTask(10),
+                            new OsUpdateTask(25),
                             new VirusTask()
                         }[
-                            Random.Range(0, 3)
+                            Random.Range(0, 4)
                         ]
                     );
                     break;
