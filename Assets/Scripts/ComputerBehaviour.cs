@@ -18,6 +18,8 @@ public class ComputerBehaviour : MonoBehaviour
     public Transform keyboardIconSpritePosition;
     public float lerpSpeed = 2f;
     public Canvas Canvas;
+    private TasksManagerBehaviour _tasksManagerBehaviour;
+    private GameObject _createdMinigame;
     
     
     // Start is called before the first frame update
@@ -26,6 +28,7 @@ public class ComputerBehaviour : MonoBehaviour
         _playerInRadius = false;
         _minigameShowing = false;
         _minigameAvailable = true;
+        _tasksManagerBehaviour = FindFirstObjectByType<TasksManagerBehaviour>();
     }
 
     // Update is called once per frame
@@ -43,12 +46,13 @@ public class ComputerBehaviour : MonoBehaviour
             if (!_minigameShowing)
             {
                 _minigameShowing = true;
-                var task = FindFirstObjectByType<TasksManagerBehaviour>().TasksOfComputers[this.gameObject];
+                var task = _tasksManagerBehaviour.TasksOfComputers[this.gameObject];
                 var miniGamePrefab = task.Prefab();
                 var minigame = Instantiate(miniGamePrefab,Canvas.transform);
+                _createdMinigame = minigame;
                 var minigameScript = minigame.GetComponent<IMinigame>();
                 minigameScript.Task = task;
-                FindFirstObjectByType<TasksManagerBehaviour>().OnTaskFinished += (sender, finishedTask) =>
+                _tasksManagerBehaviour.OnTaskFinished += (sender, finishedTask) =>
                 {
                     if (finishedTask == task)
                     {
@@ -57,14 +61,12 @@ public class ComputerBehaviour : MonoBehaviour
                         keyBoardIconSprite.localPosition = Vector2.zero;
                     }
                 };
-                FindFirstObjectByType<TasksManagerBehaviour>().OnTaskWindowClosed += (sender, args) =>
+                _tasksManagerBehaviour.OnTaskWindowClosed += (sender, args) =>
                 {
                     // Debug.Log("TASK WINDOW CLOSED");
                     _minigameShowing = false;
                 };
-
                 minigame.GetComponent<RectTransform>()?.position.Set(0,0,0);
-
             }
             
         }
@@ -80,7 +82,8 @@ public class ComputerBehaviour : MonoBehaviour
     {
         _playerInRadius = false;
         keyBoardIconSprite.localPosition = Vector2.zero;
+        _tasksManagerBehaviour.TaskWindowClosed();
+        Destroy(_createdMinigame);
     }
-
  
 }
