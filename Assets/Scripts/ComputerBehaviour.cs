@@ -12,20 +12,23 @@ public class ComputerBehaviour : MonoBehaviour
     private bool _playerInRadius;
     private bool _minigameShowing;
     private bool _minigameAvailable;
-    
-    
+    private Canvas _canvas;
+
+
+    public Animator Animator;
     public Transform keyBoardIconSprite;
     public Transform keyboardIconSpritePosition;
     public float lerpSpeed = 2f;
-    public Canvas Canvas;
-    
-    
+    private static readonly int TaskFinished = Animator.StringToHash("taskFinished");
+
+
     // Start is called before the first frame update
     void Start()
     {
         _playerInRadius = false;
         _minigameShowing = false;
         _minigameAvailable = true;
+        _canvas = FindObjectOfType<Canvas>();
     }
 
     // Update is called once per frame
@@ -45,19 +48,22 @@ public class ComputerBehaviour : MonoBehaviour
                 _minigameShowing = true;
                 var task = FindFirstObjectByType<TasksManagerBehaviour>().TasksOfComputers[this.gameObject];
                 var miniGamePrefab = task.Prefab();
-                var minigame = Instantiate(miniGamePrefab,Canvas.transform);
+                var minigame = Instantiate(miniGamePrefab,_canvas.transform);
                 var minigameScript = minigame.GetComponent<IMinigame>();
                 minigameScript.Task = task;
-                FindFirstObjectByType<TasksManagerBehaviour>().OnTaskFinished += (sender, finishedTask) =>
+                var taskManager = FindFirstObjectByType<TasksManagerBehaviour>();
+                taskManager.OnTaskFinished += (sender, finishedTask) =>
                 {
-                    if (finishedTask == task)
+                    if (finishedTask != task) return;
+                    
+                    _minigameAvailable = false;
+                    keyBoardIconSprite.localPosition = Vector2.zero;
+                    if (Animator != null)
                     {
-                        Debug.Log("TASK FINISHED: " + finishedTask);
-                        this._minigameAvailable = false;
-                        keyBoardIconSprite.localPosition = Vector2.zero;
+                        Animator.SetTrigger(TaskFinished);
                     }
                 };
-                FindFirstObjectByType<TasksManagerBehaviour>().OnTaskWindowClosed += (sender, args) =>
+                taskManager.OnTaskWindowClosed += (sender, args) =>
                 {
                     // Debug.Log("TASK WINDOW CLOSED");
                     _minigameShowing = false;
