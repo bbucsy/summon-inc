@@ -9,6 +9,7 @@ TagManager:
   - ComputerWithTask
   - NoHintImage
   - GameOver
+  - LevelFinished
   layers:
   - Default
   - TransparentFX

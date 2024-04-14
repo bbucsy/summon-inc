@@ -13,6 +13,8 @@ public class LevelManager : MonoBehaviour
 {
     public bool IsGameOver { get; set; }
     public string NextLevel;
+
+    public GameObject timer;
     // Start is called before the first frame update
     void Start()
     {
@@ -52,10 +54,11 @@ public class LevelManager : MonoBehaviour
             }
             taskManager.TasksOfComputers.Add(computer, taskManager.Tasks[^1]);
         }
+        taskManager.Tasks.GetRange(1, taskManager.Tasks.Count - 1).ForEach(task => task.Completed = true);
         taskManager.InitText();
         taskManager.OnAllTasksFinished += (sender, args) =>
         {
-            SceneManager.LoadScene(NextLevel);
+            OnTasksFinished();
         };
     }
 
@@ -73,8 +76,28 @@ public class LevelManager : MonoBehaviour
         }
     }
 
+    private void OnTasksFinished()
+    {
+        foreach (var o in Resources.FindObjectsOfTypeAll<GameObject>()
+                     .Where(b => b.CompareTag("LevelFinished")))
+        {
+            o.gameObject.SetActive(true);
+        }
+        IsGameOver = true;
+        foreach (var computerBehaviour in FindObjectsOfType<ComputerBehaviour>())
+        {
+            computerBehaviour.CloseWindow();
+        }
+        timer.GetComponent<Timer>().StopTimer();
+    }
+
     public void GoToMainMenu()
     {
         SceneManager.LoadScene("Scenes/StartMenu");
+    }
+
+    public void GoToNextNevel()
+    {
+        SceneManager.LoadScene(NextLevel);
     }
 }

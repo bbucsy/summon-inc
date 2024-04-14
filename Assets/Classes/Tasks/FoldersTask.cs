@@ -19,7 +19,7 @@ namespace Classes.Tasks
 
         public override string HintText()
         {
-           return "We recieved a new task from our client. They don't like the current coloring of the file system and want to do it in another way.";
+           return "Hi, I need your immediate assistance with an urgent task related to one of our projects. We've got a crucial client presentation coming up, and it's essential that we ensure everything is meticulously organized. We need to move files into two specific folders, and here's the catch: the files' colors must match the folders' colors for consistency and clarity. I know it sounds a bit meticulous, but it's vital for maintaining our professionalism and ensuring a smooth presentation. Could you please prioritize this task and ensure it's completed accurately and promptly? Your attention to detail and efficiency will be greatly appreciated as we work to impress our client and deliver exceptional results.";
         }
     }
 }

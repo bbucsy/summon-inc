@@ -18,6 +18,7 @@ public class EulaTask : Task
 
     public override string HintText()
     {
+        // Does not need hints
         return "";
     }
 }
