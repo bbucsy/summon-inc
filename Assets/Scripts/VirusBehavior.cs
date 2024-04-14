@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using Classes;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 namespace DefaultNamespace
 {
@@ -17,15 +19,27 @@ namespace DefaultNamespace
         public int characterNumber = 10;
         public Task Task { get; set; }
         public TextMeshProUGUI text;
+        public GameObject image;
 
         public void Start()
         {
             text.text = "";
             charactersPressed = 0;
             charactersToPress.Clear();
-            for (var i = 0; i < characterNumber; i++)
+            
+            if (Task.HintReceived)
             {
-                charactersToPress.Add(characters[UnityEngine.Random.Range(0, characters.Length)]);
+                text.gameObject.SetActive(true);
+                image.SetActive(false);
+                for (var i = 0; i < characterNumber; i++)
+                {
+                    charactersToPress.Add(characters[UnityEngine.Random.Range(0, characters.Length)]);
+                }
+            }
+            else
+            {
+                text.gameObject.SetActive(false);
+                image.SetActive(true);
             }
         }
 
@@ -37,6 +51,11 @@ namespace DefaultNamespace
         
         public void Update()
         {
+            if (charactersToPress.Count == 0)
+            {
+                return;
+            }
+            
             if (charactersPressed == characterNumber)
             {
                 FindFirstObjectByType<TasksManagerBehaviour>().TaskFinished(Task);

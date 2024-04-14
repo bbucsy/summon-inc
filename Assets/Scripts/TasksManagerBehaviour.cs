@@ -42,7 +42,7 @@ public class TasksManagerBehaviour : MonoBehaviour
             }
             if (computer.name.Contains("Virus"))
             {
-                Tasks.Add(new VirusTask());
+                Tasks.Add(new VirusTask() { HintReceived = true }); // todo: remove hint received
             }
             if (computer.name.Contains("Folders"))
             {
