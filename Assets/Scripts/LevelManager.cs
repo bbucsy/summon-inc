@@ -12,6 +12,7 @@ using UnityEngine.UI;
 public class LevelManager : MonoBehaviour
 {
     public bool IsGameOver { get; set; }
+    public string NextLevel;
     // Start is called before the first frame update
     void Start()
     {
@@ -55,8 +56,11 @@ public class LevelManager : MonoBehaviour
             }
             taskManager.TasksOfComputers.Add(computer, taskManager.Tasks[^1]);
         }
-
         taskManager.InitText();
+        taskManager.OnAllTasksFinished += (sender, args) =>
+        {
+            SceneManager.LoadScene(NextLevel);
+        };
     }
 
     public void OnStopperEnded()

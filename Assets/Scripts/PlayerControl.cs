@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 
@@ -14,17 +15,19 @@ public class Play : MonoBehaviour
     private Vector2 _playerMovement = Vector2.zero;
     private static readonly int Direction = Animator.StringToHash("direction");
     private LevelManager _levelManager;
+    private List<ComputerBehaviour> _computers;
 
     private void Start()
     {
         _animator = GetComponent<Animator>();
         _levelManager = FindFirstObjectByType<LevelManager>();
+        _computers = new List<ComputerBehaviour>(FindObjectsOfType<ComputerBehaviour>());
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (_levelManager.IsGameOver)
+        if (_levelManager.IsGameOver || _computers.Any(c => c.IsMinigameShowing))
         {
             _playerMovement = Vector2.zero;
         }
