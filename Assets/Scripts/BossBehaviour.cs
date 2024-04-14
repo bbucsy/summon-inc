@@ -28,6 +28,10 @@ public class BossBehaviour : MonoBehaviour
     
     public event EventHandler<BossBehaviour> BossWantsToTalk;
     public event EventHandler<BossBehaviour> BossTalked;
+
+    private Canvas _canvas;
+    private CircleCollider2D _circleCollider;
+    private Rigidbody2D _playerRb;
     
     // Start is called before the first frame update
     void Start()
@@ -36,6 +40,9 @@ public class BossBehaviour : MonoBehaviour
         {
             NameText.text = Name;
         }
+        _circleCollider = GetComponent<CircleCollider2D>();
+        _canvas = FindObjectOfType<Canvas>();
+        _playerRb = FindFirstObjectByType<Play>().rb;
     }
 
     // Update is called once per frame
@@ -48,16 +55,21 @@ public class BossBehaviour : MonoBehaviour
 
         if (hasMission && !summonSent)
         {
-            
-            var canvas = FindObjectOfType<Canvas>();
-            if (canvas != null)
+            if (_canvas != null)
             {
-                var summonObject = Instantiate(SummonPrefab,canvas.transform);
+                var summonObject = Instantiate(SummonPrefab,_canvas.transform);
                 var summonScript = summonObject.GetComponent<SummonBehaviour>();
                 summonScript.SetText($"{Name} has summoned you!");
                 Debug.Log("Summoning player");
                 BossWantsToTalk?.Invoke(this, this);
                 summonSent = true;
+                if (_playerRb.Distance(_circleCollider).distance <= _circleCollider.radius)
+                {
+                    if (!dialogOpen && hasMission)
+                    {
+                        openDialog();
+                    }
+                }
             }
         }
     }
@@ -73,10 +85,9 @@ public class BossBehaviour : MonoBehaviour
 
     private void openDialog()
     {
-        var canvas = FindObjectOfType<Canvas>();
-        if (canvas != null)
+        if (_canvas != null)
         {
-            var dialogObject = Instantiate(DialogPrefab, canvas.transform);
+            var dialogObject = Instantiate(DialogPrefab, _canvas.transform);
             var dialogBehaviour = dialogObject.GetComponent<DialogBehaviour>();
 
             if (NextTaskHint == null)

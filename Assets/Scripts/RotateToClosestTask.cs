@@ -20,7 +20,7 @@ public class RotateToClosestTask : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        _spriteRenderer.enabled = _tasksManagerBehaviour.Tasks.Count(t => t.Completed) > 0;
+        _spriteRenderer.enabled = _tasksManagerBehaviour.Tasks.Count(t => !t.Completed) > 0;
         if (!_spriteRenderer.enabled)
         {
             return;

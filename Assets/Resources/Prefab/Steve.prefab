@@ -163,7 +163,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 2.11
+  m_Radius: 2
 --- !u!114 &8502744647424524287
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -176,8 +176,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b4710c50b4905246adad47bc6ca7246, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _innerTimer: 0
+  _summonTimer: 0
+  _hintTimer: 0
   TimerOffset: 15
   SummonInterval: 30
+  HintInterval: 30
 --- !u!1 &3365712758113827647
 GameObject:
   m_ObjectHideFlags: 0
