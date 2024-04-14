@@ -9,6 +9,7 @@ using UnityEngine.UI;
 public class FoldersMinigameFileBehaviour : MonoBehaviour, IDragHandler
 {
     private Color _color;
+    public bool ShowsTrueColor { get; set; }
     
     public Color Color
     {
@@ -17,12 +18,22 @@ public class FoldersMinigameFileBehaviour : MonoBehaviour, IDragHandler
             _color = value;
             gameObject.GetComponent<Image>().color = value;
         }
-        get => _color;
+        get
+        {
+            if (ShowsTrueColor)
+            {
+                return _color;
+            }
+            else
+            {
+                return FoldersBehaviour.SupportedColors[UnityEngine.Random.Range(0, FoldersBehaviour.SupportedColors.Count)];
+            }
+        }
     }
 
     public void Start()
     {
-        gameObject.GetComponent<Image>().color = _color;
+        gameObject.GetComponent<Image>().color = Color;
     }
 
     public void OnDrag(PointerEventData eventData)
@@ -38,9 +49,9 @@ public class FoldersMinigameFileBehaviour : MonoBehaviour, IDragHandler
 
     public bool CollidingWithFolderOfTheSameColor()
     {
+        if (!ShowsTrueColor) { return false; }
         var collided = new List<Collider2D>();
         GetComponent<Collider2D>().OverlapCollider(new ContactFilter2D().NoFilter(), collided);
-        // Debug.Log("Collided: " + collided.Count);
         foreach (var other in collided)
         {
             var folder = other.gameObject.GetComponent<FoldersMinigameFolderBehaviour>();

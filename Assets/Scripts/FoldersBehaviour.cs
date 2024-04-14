@@ -14,7 +14,7 @@ public class FoldersBehaviour : MonoBehaviour, IMinigame
     private int _filesToGenerate;
     private int _filesInFolders;
 
-    private static readonly List<Color32> SupportedColors = new(
+    public static readonly List<Color32> SupportedColors = new(
         new[]
         {
             new Color32(155, 93, 229, 255),
@@ -58,6 +58,7 @@ public class FoldersBehaviour : MonoBehaviour, IMinigame
             var fileBehaviour = file.GetComponent<FoldersMinigameFileBehaviour>();
             file.transform.localPosition = new Vector3(filePosition.x, filePosition.y, 0);
             file.Color = fileColor;
+            file.ShowsTrueColor = Task.HintReceived;
             files.Add(fileBehaviour);
         }
             
