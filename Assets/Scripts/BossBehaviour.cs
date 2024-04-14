@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Classes;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -14,6 +15,8 @@ public class BossBehaviour : MonoBehaviour
     public bool summonSent = false;
 
     public bool dialogOpen = false;
+
+    public Task NextTaskHint = null;
     
     public string Name = "";
     public TextMesh NameText;
@@ -70,25 +73,43 @@ public class BossBehaviour : MonoBehaviour
         {
             var dialogObject = Instantiate(DialogPrefab, canvas.transform);
             var dialogBehaviour = dialogObject.GetComponent<DialogBehaviour>();
-            
-            int randomIndex = Random.Range(0, CasualDialogs.Length);
 
-            // Get the random string from the array
-            string randomString = CasualDialogs[randomIndex];
-            dialogBehaviour.SetDialogContent(Name,randomString);
+            if (NextTaskHint == null)
+            {
+                // Get the random string from the array
+                var randomIndex = Random.Range(0, CasualDialogs.Length);
+
+
+                var randomString = CasualDialogs[randomIndex];
+                dialogBehaviour.SetDialogContent(Name,randomString);
+            }
+            else
+            {
+                dialogBehaviour.SetDialogContent(Name,NextTaskHint.HintText());
+            }
+           
 
             dialogOpen = true;
 
             dialogBehaviour.OnDialogClose += (sender, args) =>
-            {
-                dialogOpen = false;
-                hasMission = false;
-                summonSent = false;
-
-            };
+                handleDialogClose();
 
         }
         
+    }
+
+    private void handleDialogClose()
+    {
+        dialogOpen = false;
+        hasMission = false;
+        summonSent = false;
+
+        if (NextTaskHint != null)
+        {
+            NextTaskHint.HintReceived = true;
+            NextTaskHint = null;
+           
+        }
     }
 
    
