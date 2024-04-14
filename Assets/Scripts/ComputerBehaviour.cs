@@ -20,8 +20,11 @@ public class ComputerBehaviour : MonoBehaviour
     public Transform keyboardIconSpritePosition;
     public float lerpSpeed = 2f;
     private static readonly int TaskFinished = Animator.StringToHash("taskFinished");
-
-
+    
+    private TasksManagerBehaviour _tasksManagerBehaviour;
+    private GameObject _createdMinigame;
+    
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -29,6 +32,7 @@ public class ComputerBehaviour : MonoBehaviour
         _minigameShowing = false;
         _minigameAvailable = true;
         _canvas = FindObjectOfType<Canvas>();
+        _tasksManagerBehaviour = FindFirstObjectByType<TasksManagerBehaviour>();
     }
 
     // Update is called once per frame
@@ -46,13 +50,13 @@ public class ComputerBehaviour : MonoBehaviour
             if (!_minigameShowing)
             {
                 _minigameShowing = true;
-                var task = FindFirstObjectByType<TasksManagerBehaviour>().TasksOfComputers[this.gameObject];
+                var task = _tasksManagerBehaviour.TasksOfComputers[this.gameObject];
                 var miniGamePrefab = task.Prefab();
                 var minigame = Instantiate(miniGamePrefab,_canvas.transform);
+                _createdMinigame = minigame;
                 var minigameScript = minigame.GetComponent<IMinigame>();
                 minigameScript.Task = task;
-                var taskManager = FindFirstObjectByType<TasksManagerBehaviour>();
-                taskManager.OnTaskFinished += (sender, finishedTask) =>
+                _tasksManagerBehaviour.OnTaskFinished += (sender, finishedTask) =>
                 {
                     if (finishedTask != task) return;
                     
@@ -63,14 +67,12 @@ public class ComputerBehaviour : MonoBehaviour
                         Animator.SetTrigger(TaskFinished);
                     }
                 };
-                taskManager.OnTaskWindowClosed += (sender, args) =>
+                _tasksManagerBehaviour.OnTaskWindowClosed += (sender, args) =>
                 {
                     // Debug.Log("TASK WINDOW CLOSED");
                     _minigameShowing = false;
                 };
-
                 minigame.GetComponent<RectTransform>()?.position.Set(0,0,0);
-
             }
             
         }
@@ -86,7 +88,8 @@ public class ComputerBehaviour : MonoBehaviour
     {
         _playerInRadius = false;
         keyBoardIconSprite.localPosition = Vector2.zero;
+        _tasksManagerBehaviour.TaskWindowClosed();
+        Destroy(_createdMinigame);
     }
-
  
 }

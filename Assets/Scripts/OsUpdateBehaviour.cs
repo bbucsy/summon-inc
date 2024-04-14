@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using System.Linq;
 using Classes;
 using Classes.Tasks;
@@ -19,21 +17,21 @@ public class OsUpdateBehaviour : MonoBehaviour, IMinigame
         var timer = GetComponentInChildren<Timer>();
         timer.seconds = task.TimeToFinish;
         if (task.StartTime == null) { return; }
-        showFinishButton();
+        ShowFinishButton();
         timer.StartTimer();
         timer.timeRemaining = (now - task.StartTime.Value).TotalMilliseconds / 1000.0;
     }
 
     public void StartTimer()
     {
-        showFinishButton();
+        ShowFinishButton();
         var task = ((OsUpdateTask)Task);
         var timer = GetComponentInChildren<Timer>();
         timer.StartTimer();
         task.StartTime = DateTime.Now;
     }
 
-    private void showFinishButton()
+    private void ShowFinishButton()
     {
         var buttons = GetComponentsInChildren<Button>(includeInactive: true);
         var startButton = buttons.First(b => b.gameObject.name == "StartButton");
