@@ -54,6 +54,7 @@ public class ComputerBehaviour : MonoBehaviour
                     {
                         Debug.Log("TASK FINISHED: " + finishedTask);
                         this._minigameAvailable = false;
+                        keyBoardIconSprite.localPosition = Vector2.zero;
                     }
                 };
                 TasksManagerBehaviour.Instance.OnTaskWindowClosed += (sender, args) =>
