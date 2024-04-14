@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1063755701101489115}
   - component: {fileID: 4075378694746706210}
-  - component: {fileID: 3929354823683725276}
+  - component: {fileID: 1424690325425633326}
   m_Layer: 0
   m_Name: Virus_Computer
   m_TagString: ComputerWithTask
@@ -71,7 +71,7 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 1.57
---- !u!114 &3929354823683725276
+--- !u!114 &1424690325425633326
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -80,11 +80,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 96053856045579331}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 994d7b778279b1245a7a9675506571d7, type: 3}
+  m_Script: {fileID: 11500000, guid: 0c998c8fb690e5045b0070f08330567e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  keyBoardIconSprite: {fileID: 5903209185787555654}
-  keyboardIconSpritePosition: {fileID: 3297209177009838631}
+  keyBoardIconSprite: {fileID: 3297209177009838631}
+  keyboardIconSpritePosition: {fileID: 5903209185787555654}
   lerpSpeed: 2
   Canvas: {fileID: 0}
 --- !u!1 &424952348300087263
