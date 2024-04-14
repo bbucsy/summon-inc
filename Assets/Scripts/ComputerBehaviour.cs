@@ -43,12 +43,12 @@ public class ComputerBehaviour : MonoBehaviour
             if (!_minigameShowing)
             {
                 _minigameShowing = true;
-                var task = TaskList.Instance.TasksOfComputers[this.gameObject];
+                var task = TasksManagerBehaviour.Instance.TasksOfComputers[this.gameObject];
                 var miniGamePrefab = task.Type.Prefab();
                 var minigame = Instantiate(miniGamePrefab,Canvas.transform);
                 var minigameScript = minigame.GetComponent<IMinigame>();
                 minigameScript.Task = task;
-                TaskList.Instance.OnTaskFinished += (sender, finishedTask) =>
+                TasksManagerBehaviour.Instance.OnTaskFinished += (sender, finishedTask) =>
                 {
                     if (finishedTask == task)
                     {
@@ -56,7 +56,7 @@ public class ComputerBehaviour : MonoBehaviour
                         this._minigameAvailable = false;
                     }
                 };
-                TaskList.Instance.OnTaskWindowClosed += (sender, args) =>
+                TasksManagerBehaviour.Instance.OnTaskWindowClosed += (sender, args) =>
                 {
                     // Debug.Log("TASK WINDOW CLOSED");
                     _minigameShowing = false;

@@ -19,7 +19,7 @@ public class OpenWindow : MonoBehaviour
         var exitButton = component.GetComponentInChildren<Button>();
         exitButton.onClick.AddListener(() =>
             {
-                TaskList.Instance.TaskWindowClosed();
+                TasksManagerBehaviour.Instance.TaskWindowClosed();
                 Destroy(component);
             }
         );

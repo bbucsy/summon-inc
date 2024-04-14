@@ -29,16 +29,26 @@ public class FoldersMinigameFileBehaviour : MonoBehaviour, IDragHandler
     {
         // Debug.Log("Drag: " + eventData.delta.x + " " + eventData.delta.y);
         transform.position += new Vector3(eventData.delta.x, eventData.delta.y, 0);
+        if (CollidingWithFolderOfTheSameColor())
+        {
+            transform.GetComponentInParent<FoldersBehaviour>().OnFileInFolder();
+            gameObject.SetActive(false);
+        }
+    }
+
+    public bool CollidingWithFolderOfTheSameColor()
+    {
         var collided = new List<Collider2D>();
         GetComponent<Collider2D>().OverlapCollider(new ContactFilter2D().NoFilter(), collided);
-        Debug.Log("Collided: " + collided.Count);
+        // Debug.Log("Collided: " + collided.Count);
         foreach (var other in collided)
         {
             var folder = other.gameObject.GetComponent<FoldersMinigameFolderBehaviour>();
             if (folder == null) continue;
             if (!folder.Color.Equals(Color)) continue;
-            transform.GetComponentInParent<FoldersBehaviour>().OnFileInFolder();
-            Destroy(gameObject);
+            return true;
         }
+        return false;
     }
+    
 }
