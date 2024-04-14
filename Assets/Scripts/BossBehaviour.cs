@@ -26,6 +26,9 @@ public class BossBehaviour : MonoBehaviour
     public String[] CasualDialogs;
     public GameObject DialogPrefab;
     
+    public event EventHandler<BossBehaviour> BossWantsToTalk;
+    public event EventHandler<BossBehaviour> BossTalked;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -52,6 +55,8 @@ public class BossBehaviour : MonoBehaviour
                 var summonObject = Instantiate(SummonPrefab,canvas.transform);
                 var summonScript = summonObject.GetComponent<SummonBehaviour>();
                 summonScript.SetText($"{Name} has summoned you!");
+                Debug.Log("Summoning player");
+                BossWantsToTalk?.Invoke(this, this);
                 summonSent = true;
             }
         }
@@ -108,8 +113,9 @@ public class BossBehaviour : MonoBehaviour
         {
             NextTaskHint.HintReceived = true;
             NextTaskHint = null;
-           
         }
+        BossTalked?.Invoke(this, this);
+        
     }
 
    
