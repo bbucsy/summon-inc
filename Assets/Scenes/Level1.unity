@@ -14021,7 +14021,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 4d4c034e16c5eff4390c1ca482b677d5, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d2415adb725be114fb956f8deee71dd9, type: 3}
   m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -20522,11 +20522,21 @@ Tilemap:
       m_TileObjectToInstantiateIndex: 65535
       dummyAlignment: 0
       m_AllTileFlags: 1073741825
+  - first: {x: 1050, y: 479, z: 0}
+    second:
+      serializedVersion: 2
+      m_TileIndex: 1
+      m_TileSpriteIndex: 1
+      m_TileMatrixIndex: 0
+      m_TileColorIndex: 0
+      m_TileObjectToInstantiateIndex: 65535
+      dummyAlignment: 0
+      m_AllTileFlags: 1073741825
   m_AnimatedTiles: {}
   m_TileAssetArray:
   - m_RefCount: 21
     m_Data: {fileID: 11400000, guid: b6082c24996cd174d835b2ecfa0e19e2, type: 2}
-  - m_RefCount: 21
+  - m_RefCount: 22
     m_Data: {fileID: 11400000, guid: 54e21eb2bb7b8f54dbfabafc90b07abb, type: 2}
   - m_RefCount: 52
     m_Data: {fileID: 11400000, guid: c1623ea8a0049fc4192c33f246c37cba, type: 2}
@@ -20561,7 +20571,7 @@ Tilemap:
   m_TileSpriteArray:
   - m_RefCount: 21
     m_Data: {fileID: 405973943, guid: 75cc7cab72c04ee459290f83df98dc26, type: 3}
-  - m_RefCount: 21
+  - m_RefCount: 22
     m_Data: {fileID: 1640717428, guid: 75cc7cab72c04ee459290f83df98dc26, type: 3}
   - m_RefCount: 52
     m_Data: {fileID: 1288253773, guid: 75cc7cab72c04ee459290f83df98dc26, type: 3}
@@ -20594,7 +20604,7 @@ Tilemap:
   - m_RefCount: 18
     m_Data: {fileID: 776287909, guid: 75cc7cab72c04ee459290f83df98dc26, type: 3}
   m_TileMatrixArray:
-  - m_RefCount: 586
+  - m_RefCount: 587
     m_Data:
       e00: 1
       e01: 0
@@ -20667,13 +20677,13 @@ Tilemap:
       e32: 8.88e-43
       e33: 8.9e-43
   m_TileColorArray:
-  - m_RefCount: 586
+  - m_RefCount: 587
     m_Data: {r: 1, g: 1, b: 1, a: 1}
   m_TileObjectToInstantiateArray: []
   m_AnimationFrameRate: 1
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Origin: {x: -34, y: -28, z: 0}
-  m_Size: {x: 130, y: 60, z: 1}
+  m_Size: {x: 1085, y: 508, z: 1}
   m_TileAnchor: {x: 0.5, y: 0.5, z: 0}
   m_TileOrientation: 0
   m_TileOrientationMatrix:
@@ -20801,7 +20811,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.2, g: 0.2, b: 0.2, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -21485,7 +21495,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 4d4c034e16c5eff4390c1ca482b677d5, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d2415adb725be114fb956f8deee71dd9, type: 3}
   m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1
