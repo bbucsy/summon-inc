@@ -13,7 +13,7 @@ public class TasksManagerBehaviour : MonoBehaviour
     public Dictionary<GameObject, Task> TasksOfComputers { get; } = new Dictionary<GameObject, Task>();
     public event EventHandler<Task> OnTaskFinished;
     public event EventHandler OnTaskWindowClosed; 
-    public int tasksToGenerate = 3;
+    public int tasksToGenerate = 5;
         
     void Awake()
     {
@@ -60,6 +60,11 @@ public class TasksManagerBehaviour : MonoBehaviour
                 ));
                 // temporary
                 // Tasks[^1].HintReceived = true;
+            }
+
+            if (computer.name.Contains("Os_Update"))
+            {
+                Tasks.Add(new OsUpdateTask());
             }
             TasksOfComputers.Add(computer, Tasks[^1]);
         }
