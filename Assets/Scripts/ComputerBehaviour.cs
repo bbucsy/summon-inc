@@ -49,7 +49,7 @@ public class ComputerBehaviour : MonoBehaviour
         {
             return;
         }
-        if (Input.GetKeyDown("e") && _playerInRadius)
+        if (Input.GetKeyDown("e") && _playerInRadius && _minigameAvailable)
         {
             Debug.unityLogger.Log("E key was pressed");
             if (!_minigameShowing)
