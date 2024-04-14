@@ -40,6 +40,10 @@ public class TasksManagerBehaviour : MonoBehaviour
             {
                 Tasks.Add(new EulaTask());
             }
+            if (computer.name.Contains("Virus"))
+            {
+                Tasks.Add(new VirusTask());
+            }
             if (computer.name.Contains("Folders"))
             {
                 Tasks.Add(new FoldersTask(

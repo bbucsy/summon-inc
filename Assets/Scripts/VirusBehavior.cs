@@ -2,25 +2,30 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Classes;
+using TMPro;
 using UnityEngine;
 
 namespace DefaultNamespace
 {
-    public class VirusMinigameBehaviour : MonoBehaviour, IMinigame
+    public class VirusBehaviour : MonoBehaviour, IMinigame
     {
-        public int characterNumber = 5;
-        public Task Task { get; set; }
-        
+        private string characters = "abcdefghijklmnopqrstuvwxyz";
         private List<char> charactersToPress = new();
         private int charactersPressed = 0;
+        
+        // publicly settable in the editor
+        public int characterNumber = 10;
+        public Task Task { get; set; }
+        public TextMeshProUGUI text;
 
         public void Start()
         {
+            text.text = "";
             charactersPressed = 0;
             charactersToPress.Clear();
             for (var i = 0; i < characterNumber; i++)
             {
-                charactersToPress.Add((char)UnityEngine.Random.Range(97, 123));
+                charactersToPress.Add(characters[UnityEngine.Random.Range(0, characters.Length)]);
             }
         }
 
@@ -38,6 +43,7 @@ namespace DefaultNamespace
                 Destroy(this.gameObject);
                 return;
             }
+            text.text = $"[{charactersToPress[charactersPressed]}]";
             
             if (Input.anyKeyDown)
             {
