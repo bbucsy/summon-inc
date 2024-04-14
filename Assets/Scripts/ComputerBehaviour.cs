@@ -44,7 +44,7 @@ public class ComputerBehaviour : MonoBehaviour
             {
                 _minigameShowing = true;
                 var task = TasksManagerBehaviour.Instance.TasksOfComputers[this.gameObject];
-                var miniGamePrefab = task.Type.Prefab();
+                var miniGamePrefab = task.Prefab();
                 var minigame = Instantiate(miniGamePrefab,Canvas.transform);
                 var minigameScript = minigame.GetComponent<IMinigame>();
                 minigameScript.Task = task;
