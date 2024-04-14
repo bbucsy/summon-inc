@@ -67,7 +67,7 @@ public class FoldersBehaviour : MonoBehaviour, IMinigame
 
     public void OnWindowClosed()
     {
-        TasksManagerBehaviour.Instance.TaskWindowClosed();
+        FindFirstObjectByType<TasksManagerBehaviour>().TaskWindowClosed();
         Destroy(this.gameObject);
     }
 
@@ -76,7 +76,7 @@ public class FoldersBehaviour : MonoBehaviour, IMinigame
         _filesInFolders++;
         if (_filesInFolders == _filesToGenerate)
         {
-            TasksManagerBehaviour.Instance.TaskFinished(Task);
+            FindFirstObjectByType<TasksManagerBehaviour>().TaskFinished(Task);
             Destroy(this.gameObject);
         }
     }

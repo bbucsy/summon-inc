@@ -52,7 +52,9 @@ public class BossHintTimer : MonoBehaviour
 
     private void getNextHint()
     {
-        var task = TasksManagerBehaviour.Instance.Tasks.FirstOrDefault(t => t.HintReceived == false);
+        var task = FindFirstObjectByType<TasksManagerBehaviour>()
+            .Tasks
+            .FirstOrDefault(t => t.HintReceived == false);
         _bossBehaviour.NextTaskHint = task;
     }
 }

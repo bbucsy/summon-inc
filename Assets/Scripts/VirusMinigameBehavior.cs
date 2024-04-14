@@ -26,7 +26,7 @@ namespace DefaultNamespace
 
         public void OnWindowClosed()
         {
-            TasksManagerBehaviour.Instance.TaskWindowClosed();
+            FindFirstObjectByType<TasksManagerBehaviour>().TaskWindowClosed();
             Destroy(this.gameObject);
         }
         
@@ -34,7 +34,7 @@ namespace DefaultNamespace
         {
             if (charactersPressed == characterNumber)
             {
-                TasksManagerBehaviour.Instance.TaskFinished(Task);
+                FindFirstObjectByType<TasksManagerBehaviour>().TaskFinished(Task);
                 Destroy(this.gameObject);
                 return;
             }

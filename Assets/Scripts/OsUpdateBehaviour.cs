@@ -24,12 +24,6 @@ public class OsUpdateBehaviour : MonoBehaviour, IMinigame
         timer.timeRemaining = (now - task.StartTime.Value).TotalMilliseconds / 1000.0;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void StartTimer()
     {
         showFinishButton();
@@ -58,13 +52,13 @@ public class OsUpdateBehaviour : MonoBehaviour, IMinigame
 
     public void OnWindowClosed()
     {
-        TasksManagerBehaviour.Instance.TaskWindowClosed();
+        FindFirstObjectByType<TasksManagerBehaviour>().TaskWindowClosed();
         Destroy(this.gameObject);
     }
     
     public void OnOsUpdateFinished()
     {
-        TasksManagerBehaviour.Instance.TaskFinished(Task);
+        FindFirstObjectByType<TasksManagerBehaviour>().TaskFinished(Task);
         Destroy(this.gameObject);
     }
 }

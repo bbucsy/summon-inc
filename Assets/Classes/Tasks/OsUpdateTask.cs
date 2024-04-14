@@ -10,6 +10,7 @@ namespace Classes.Tasks
         public OsUpdateTask(int timeToFinish = 5) : base("Os Update")
         {
             TimeToFinish = timeToFinish;
+            HintReceived = true;
             StartTime = null;
         }
 
@@ -20,7 +21,8 @@ namespace Classes.Tasks
 
         public override string HintText()
         {
-            return "PC needs an OS update, find the update button in the settings.";
+            // Does not need hints
+            return "";
         }
     }
 }

@@ -8,24 +8,11 @@ using Task = Classes.Task;
 
 public class TasksManagerBehaviour : MonoBehaviour
 {
-    public static TasksManagerBehaviour Instance { get; private set; }
     public List<Task> Tasks { get; } = new();
     public Dictionary<GameObject, Task> TasksOfComputers { get; } = new Dictionary<GameObject, Task>();
     public event EventHandler<Task> OnTaskFinished;
     public event EventHandler OnTaskWindowClosed; 
     public int tasksToGenerate = 5;
-        
-    void Awake()
-    {
-        if (Instance == null)
-        {
-            Instance = this;
-        }
-        else
-        {
-            Debug.Log("Instance already exists!");
-        }
-    }
         
     // Start is called before the first frame update
     void Start()
