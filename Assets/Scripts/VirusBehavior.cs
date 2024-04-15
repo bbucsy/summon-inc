@@ -46,7 +46,7 @@ namespace DefaultNamespace
 
         public void OnWindowClosed()
         {
-            FindFirstObjectByType<TasksManagerBehaviour>().TaskWindowClosed();
+            FindFirstObjectByType<TasksManagerBehaviour>().WindowClosed();
             Destroy(this.gameObject);
         }
         

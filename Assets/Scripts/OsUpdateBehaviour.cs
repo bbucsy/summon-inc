@@ -58,7 +58,7 @@ public class OsUpdateBehaviour : MonoBehaviour, IMinigame
 
     public void OnWindowClosed()
     {
-        FindFirstObjectByType<TasksManagerBehaviour>().TaskWindowClosed();
+        FindFirstObjectByType<TasksManagerBehaviour>().WindowClosed();
         Destroy(this.gameObject);
     }
     

@@ -104,7 +104,7 @@ public class ComputerBehaviour : MonoBehaviour
     {
         if (sendEvent)
         {
-            _tasksManagerBehaviour.TaskWindowClosed();
+            _tasksManagerBehaviour.WindowClosed();
         }
         IsMinigameShowing = false;
         if (_createdMinigame)

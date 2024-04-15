@@ -11,13 +11,13 @@ public class TasksManagerBehaviour : MonoBehaviour
     public List<Task> Tasks { get; } = new();
     public Dictionary<GameObject, Task> TasksOfComputers { get; } = new Dictionary<GameObject, Task>();
     public event EventHandler<Task> OnTaskFinished;
-    public event EventHandler OnTaskWindowClosed; 
+    public event EventHandler OnTaskWindowClosed;
     public int tasksToGenerate = 5;
     private TextMeshProUGUI _text;
     public event EventHandler OnAllTasksFinished;
     public AudioSource taskFinishedSound;
     public AudioSource windowClosedSound;
-        
+
     // Start is called before the first frame update
     void Start()
     {
@@ -35,7 +35,9 @@ public class TasksManagerBehaviour : MonoBehaviour
         foreach (var task in Tasks)
         {
             _text.text += "\n• " + (task.Completed ? "<color=green>" : "<color=red>") + task.Name + "</color>";
-            if (task.HintRequired && task.HintReceived)
+            if (task.HintRequired
+                && task.HintReceived
+                && !task.Completed)
             {
                 _text.text += "<color=yellow>*</color>";
             }
@@ -55,8 +57,8 @@ public class TasksManagerBehaviour : MonoBehaviour
             taskFinishedSound.Play();
         }
     }
-        
-    public void TaskWindowClosed()
+
+    public void WindowClosed()
     {
         OnTaskWindowClosed?.Invoke(this, EventArgs.Empty);
         windowClosedSound.Play();

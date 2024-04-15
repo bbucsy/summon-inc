@@ -12,8 +12,6 @@ public class DialogBehaviour : MonoBehaviour
     public TextMeshProUGUI NameHolder;
 
     public TextMeshProUGUI TextHolder;
-    
-
 
     public void SetDialogContent(string Name, string Content)
     {
@@ -31,6 +29,7 @@ public class DialogBehaviour : MonoBehaviour
     {
         Debug.unityLogger.Log("Close dialog pushed");
         OnDialogClose?.Invoke(this,null);
+        FindFirstObjectByType<TasksManagerBehaviour>().WindowClosed();
         Destroy(gameObject);
     }
 }
