@@ -10,7 +10,7 @@ public class FoldersMinigameFileBehaviour : MonoBehaviour, IDragHandler
 {
     private Color _color;
     public bool ShowsTrueColor { get; set; }
-    private AudioSource _audioSource;
+    public AudioSource audioSource;
     
     public Color Color
     {
@@ -35,7 +35,6 @@ public class FoldersMinigameFileBehaviour : MonoBehaviour, IDragHandler
     public void Start()
     {
         gameObject.GetComponent<Image>().color = Color;
-        _audioSource = GetComponent<AudioSource>();
     }
 
     public void OnDrag(PointerEventData eventData)
@@ -47,7 +46,7 @@ public class FoldersMinigameFileBehaviour : MonoBehaviour, IDragHandler
         {
             transform.GetComponentInParent<FoldersBehaviour>().OnFileInFolder();
             gameObject.SetActive(false);
-            _audioSource.Play();
+            audioSource.Play();
         }
     }
 
