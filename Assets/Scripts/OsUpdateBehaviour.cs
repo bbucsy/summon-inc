@@ -9,9 +9,15 @@ using UnityEngine.UI;
 public class OsUpdateBehaviour : MonoBehaviour, IMinigame
 {
     public Task Task { get; set; }
+    private LevelManager _levelManager;
+    private AudioSource _audioSource;
+    public AudioClip osUpdateFinishedSound;
+    public AudioClip osUpdateStartedSound;
     // Start is called before the first frame update
     void Start()
     {
+        _levelManager = FindFirstObjectByType<LevelManager>();
+        _audioSource = GetComponent<AudioSource>();
         var task = ((OsUpdateTask)Task);
         var now = DateTime.Now;
         var timer = GetComponentInChildren<Timer>();
@@ -29,6 +35,8 @@ public class OsUpdateBehaviour : MonoBehaviour, IMinigame
         var timer = GetComponentInChildren<Timer>();
         timer.StartTimer();
         task.StartTime = DateTime.Now;
+        _audioSource.PlayOneShot(osUpdateStartedSound);
+        _levelManager.PlaySoundWithDelay(osUpdateFinishedSound, task.TimeToFinish);
     }
 
     private void ShowFinishButton()

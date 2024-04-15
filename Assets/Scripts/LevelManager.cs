@@ -79,6 +79,7 @@ public class LevelManager : MonoBehaviour
         }
         _audioSource.clip = gameOverSound;
         _audioSource.Play();
+        _audioSource.mute = true;
     }
 
     private void OnTasksFinished()
@@ -96,6 +97,7 @@ public class LevelManager : MonoBehaviour
         timer.GetComponent<Timer>().StopTimer();
         _audioSource.clip = levelFinishedSound;
         _audioSource.Play();
+        _audioSource.mute = true;
     }
 
     public void GoToMainMenu()
@@ -106,5 +108,14 @@ public class LevelManager : MonoBehaviour
     public void GoToNextNevel()
     {
         SceneManager.LoadScene(NextLevel);
+    }
+
+    public void PlaySoundWithDelay(AudioClip clip, int delayInSeconds)
+    {
+        var resource = Resources.Load("Prefab/TimedSound", typeof(GameObject)) as GameObject;
+        var created = Instantiate(resource);
+        var playSoundDelayed = created.GetComponent<PlaySoundDelayed>();
+        playSoundDelayed.clip = clip;
+        playSoundDelayed.delay = delayInSeconds;
     }
 }
