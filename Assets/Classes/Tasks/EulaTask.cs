@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class EulaTask : Task
 {
-    public EulaTask() : base("EULA")
+    public EulaTask() : base("EULA", false)
     {
         this.HintReceived = true;
     }

@@ -54,7 +54,7 @@ public class LevelManager : MonoBehaviour
             }
             taskManager.TasksOfComputers.Add(computer, taskManager.Tasks[^1]);
         }
-        taskManager.Tasks.GetRange(1, taskManager.Tasks.Count - 1).ForEach(task => task.Completed = true);
+       //taskManager.Tasks.GetRange(1, taskManager.Tasks.Count - 1).ForEach(task => task.Completed = true);
         taskManager.InitText();
         taskManager.OnAllTasksFinished += (sender, args) =>
         {

@@ -4,7 +4,7 @@ namespace Classes.Tasks
 {
     public class VirusTask : Task
     {
-        public VirusTask() : base("Virus")
+        public VirusTask() : base("Virus", true)
         {
         }
 

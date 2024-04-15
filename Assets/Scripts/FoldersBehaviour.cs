@@ -1,7 +1,10 @@
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using Classes;
 using Classes.Tasks;
 using DefaultNamespace;
+using TMPro;
 using UnityEngine;
 
 public class FoldersBehaviour : MonoBehaviour, IMinigame
@@ -13,6 +16,8 @@ public class FoldersBehaviour : MonoBehaviour, IMinigame
     public FoldersMinigameFileBehaviour fileGameObject;
     private int _filesToGenerate;
     private int _filesInFolders;
+    public int hintAfterSeconds = 5;
+    private List<BossBehaviour> bossBehaviours;
 
     public static readonly List<Color32> SupportedColors = new(
         new[]

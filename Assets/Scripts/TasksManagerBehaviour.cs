@@ -21,6 +21,10 @@ public class TasksManagerBehaviour : MonoBehaviour
     {
         _text = GetComponent<TextMeshProUGUI>();
         OnTaskFinished += (sender, task) => InitText();
+        foreach (var bossBehaviour in FindObjectsOfType<BossBehaviour>())
+        {
+            bossBehaviour.BossTalked += (sender, behaviour) => InitText();
+        }
     }
 
     public void InitText()
@@ -29,6 +33,10 @@ public class TasksManagerBehaviour : MonoBehaviour
         foreach (var task in Tasks)
         {
             _text.text += "\n• " + (task.Completed ? "<color=green>" : "<color=red>") + task.Name + "</color>";
+            if (task.HintRequired && task.HintReceived)
+            {
+                _text.text += "<color=yellow>*</color>";
+            }
         }
     }
 

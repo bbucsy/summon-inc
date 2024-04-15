@@ -9,11 +9,14 @@ namespace Classes
         public bool Completed { get; set; }
         // public DateTime Deadline { get; set; }
         public bool HintReceived { get; set; }
-        public Task(string name)
+        public bool HintRequired { get; }
+
+        protected Task(string name, bool hintRequired)
         {
             Name = name;
             Completed = false;
             HintReceived = false;
+            HintRequired = hintRequired;
         }
 
         public abstract GameObject Prefab();
