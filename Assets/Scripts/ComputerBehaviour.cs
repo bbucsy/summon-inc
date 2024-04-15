@@ -16,8 +16,7 @@ public class ComputerBehaviour : MonoBehaviour
     private Canvas _canvas;
 
     public Animator Animator;
-    public Transform keyBoardIconSprite;
-    public Transform keyboardIconSpritePosition;
+    public GameObject keyBoardIconSprite;
     public float lerpSpeed = 2f;
     private static readonly int TaskFinished = Animator.StringToHash("taskFinished");
     
@@ -39,9 +38,9 @@ public class ComputerBehaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (_playerInRadius && _minigameAvailable)
+        if (_playerInRadius && _minigameAvailable && !keyBoardIconSprite.activeSelf)
         {
-            keyBoardIconSprite.position = Vector2.Lerp( keyBoardIconSprite.position, keyboardIconSpritePosition.position, lerpSpeed * Time.deltaTime);
+            keyBoardIconSprite.SetActive(true);
         }
 
         if (Input.GetKeyDown(KeyCode.Escape) && IsMinigameShowing)
@@ -70,7 +69,7 @@ public class ComputerBehaviour : MonoBehaviour
                 {
                     if (finishedTask != task) return;
                     _minigameAvailable = false;
-                    keyBoardIconSprite.localPosition = Vector2.zero;
+                    keyBoardIconSprite.SetActive(false);
                     if (Animator != null)
                     {
                         Animator.SetTrigger(TaskFinished);
@@ -97,7 +96,7 @@ public class ComputerBehaviour : MonoBehaviour
     private void OnTriggerExit2D(Collider2D other)
     {
         _playerInRadius = false;
-        keyBoardIconSprite.localPosition = Vector2.zero;
+        keyBoardIconSprite.SetActive(false);
         CloseWindow();
     }
 

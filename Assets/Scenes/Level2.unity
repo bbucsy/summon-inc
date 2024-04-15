@@ -26549,6 +26549,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   NextLevel: StartMenu
   timer: {fileID: 0}
+  gameOverSound: {fileID: 0}
+  levelFinishedSound: {fileID: 0}
 --- !u!4 &1626324437
 Transform:
   m_ObjectHideFlags: 0
