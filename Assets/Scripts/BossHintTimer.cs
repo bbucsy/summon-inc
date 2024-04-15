@@ -54,7 +54,12 @@ public class BossHintTimer : MonoBehaviour
     {
         var task = FindFirstObjectByType<TasksManagerBehaviour>()
             .Tasks
-            .FirstOrDefault(t => t.HintReceived == false);
+            .FirstOrDefault(t => !t.HintReceived && !t.AssignedToBoss);
+
+        if (task == null) return;
+        
+        task.AssignedToBoss = true;
         _bossBehaviour.NextTaskHint = task;
+
     }
 }
