@@ -97,12 +97,15 @@ public class ComputerBehaviour : MonoBehaviour
     {
         _playerInRadius = false;
         keyBoardIconSprite.SetActive(false);
-        CloseWindow();
+        CloseWindow(false);
     }
 
-    public void CloseWindow()
+    public void CloseWindow(bool sendEvent = true)
     {
-        _tasksManagerBehaviour.TaskWindowClosed();
+        if (sendEvent)
+        {
+            _tasksManagerBehaviour.TaskWindowClosed();
+        }
         IsMinigameShowing = false;
         if (_createdMinigame)
         {
