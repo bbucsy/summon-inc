@@ -7,7 +7,7 @@ namespace Classes.Tasks
     {
         public int FilesToGenerate { get; set; }
         
-        public FoldersTask(int filesToGenerate = 2) : base("Folders")
+        public FoldersTask(int filesToGenerate = 2) : base("Folders", true)
         {
             FilesToGenerate = filesToGenerate;
         }

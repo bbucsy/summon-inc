@@ -7,7 +7,7 @@ namespace Classes.Tasks
     {
         public int TimeToFinish { get; set; }
         public DateTime? StartTime { get; set; }
-        public OsUpdateTask(int timeToFinish = 5) : base("Os Update")
+        public OsUpdateTask(int timeToFinish = 5) : base("Os Update", false)
         {
             TimeToFinish = timeToFinish;
             HintReceived = true;

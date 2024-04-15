@@ -199,7 +199,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: This task seems unsolvabne
+  m_text: This task seems unsolvable
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 19787582e5e2d89408a385f327cb8c4e, type: 2}
   m_sharedMaterial: {fileID: 3791509898682322528, guid: 19787582e5e2d89408a385f327cb8c4e, type: 2}
