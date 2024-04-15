@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using DefaultNamespace;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.UI;
+using UnityEngine.UIElements;
+using Image = UnityEngine.UI.Image;
 
 [RequireComponent(typeof(BoxCollider2D))]
 public class FoldersMinigameFileBehaviour : MonoBehaviour, IDragHandler
@@ -42,6 +43,17 @@ public class FoldersMinigameFileBehaviour : MonoBehaviour, IDragHandler
         // Debug.Log("Drag: " + eventData.delta.x + " " + eventData.delta.y);
         // todo: do not let it out of the container
         transform.position += new Vector3(eventData.delta.x, eventData.delta.y, 0);
+        var parentRectTransform = transform.parent.GetComponent<RectTransform>();
+        var myRectTransform = transform.GetComponent<RectTransform>();
+        var minX = -1 * parentRectTransform.rect.width / 2 + myRectTransform.rect.width;
+        var maxX = parentRectTransform.rect.width / 2 - myRectTransform.rect.width;
+        var minY = -1 * parentRectTransform.rect.height / 2 + myRectTransform.rect.height;
+        var maxY = parentRectTransform.rect.height / 2 - myRectTransform.rect.height;
+        transform.localPosition = new Vector3(
+            Mathf.Clamp(transform.localPosition.x, minX, maxX),
+            Mathf.Clamp(transform.localPosition.y, minY, maxY),
+            transform.localPosition.z
+        );
         if (CollidingWithFolderOfTheSameColor())
         {
             transform.GetComponentInParent<FoldersBehaviour>().OnFileInFolder();
