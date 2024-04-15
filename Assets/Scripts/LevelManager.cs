@@ -15,6 +15,9 @@ public class LevelManager : MonoBehaviour
     public string NextLevel;
 
     public GameObject timer;
+    public AudioClip gameOverSound;
+    public AudioClip levelFinishedSound;
+    private AudioSource _audioSource;
     // Start is called before the first frame update
     void Start()
     {
@@ -54,12 +57,12 @@ public class LevelManager : MonoBehaviour
             }
             taskManager.TasksOfComputers.Add(computer, taskManager.Tasks[^1]);
         }
-       //taskManager.Tasks.GetRange(1, taskManager.Tasks.Count - 1).ForEach(task => task.Completed = true);
         taskManager.InitText();
         taskManager.OnAllTasksFinished += (sender, args) =>
         {
             OnTasksFinished();
         };
+        _audioSource = GetComponent<AudioSource>();
     }
 
     public void OnStopperEnded()
@@ -74,6 +77,8 @@ public class LevelManager : MonoBehaviour
         {
             computerBehaviour.CloseWindow();
         }
+        _audioSource.clip = gameOverSound;
+        _audioSource.Play();
     }
 
     private void OnTasksFinished()
@@ -89,6 +94,8 @@ public class LevelManager : MonoBehaviour
             computerBehaviour.CloseWindow();
         }
         timer.GetComponent<Timer>().StopTimer();
+        _audioSource.clip = levelFinishedSound;
+        _audioSource.Play();
     }
 
     public void GoToMainMenu()
