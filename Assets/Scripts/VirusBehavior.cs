@@ -20,6 +20,7 @@ namespace DefaultNamespace
         public Task Task { get; set; }
         public TextMeshProUGUI text;
         public GameObject image;
+        public AudioSource audioSource;
 
         public void Start()
         {
@@ -70,6 +71,7 @@ namespace DefaultNamespace
                 {
                     if (Input.inputString[0] == charactersToPress[charactersPressed])
                     {
+                        audioSource.Play();
                         charactersPressed++;
                     }
                 }

@@ -10,6 +10,7 @@ public class FoldersMinigameFileBehaviour : MonoBehaviour, IDragHandler
 {
     private Color _color;
     public bool ShowsTrueColor { get; set; }
+    private AudioSource _audioSource;
     
     public Color Color
     {
@@ -34,16 +35,19 @@ public class FoldersMinigameFileBehaviour : MonoBehaviour, IDragHandler
     public void Start()
     {
         gameObject.GetComponent<Image>().color = Color;
+        _audioSource = GetComponent<AudioSource>();
     }
 
     public void OnDrag(PointerEventData eventData)
     {
         // Debug.Log("Drag: " + eventData.delta.x + " " + eventData.delta.y);
+        // todo: do not let it out of the container
         transform.position += new Vector3(eventData.delta.x, eventData.delta.y, 0);
         if (CollidingWithFolderOfTheSameColor())
         {
             transform.GetComponentInParent<FoldersBehaviour>().OnFileInFolder();
             gameObject.SetActive(false);
+            _audioSource.Play();
         }
     }
 
