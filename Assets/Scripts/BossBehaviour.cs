@@ -69,7 +69,7 @@ public class BossBehaviour : MonoBehaviour
                 if (_playerRb.Distance(_circleCollider).distance <= _circleCollider.radius)
                 {
                     _playerInRadius = true;
-                    KeyboardIcon.SetActive(true);
+                    KeyboardIcon.SetActive(hasMission);
                 }
             }
         }
@@ -84,7 +84,7 @@ public class BossBehaviour : MonoBehaviour
     {
 
         _playerInRadius = true;
-        KeyboardIcon.SetActive(true);
+        KeyboardIcon.SetActive(hasMission);
     }
 
     private void OnTriggerExit2D(Collider2D other)

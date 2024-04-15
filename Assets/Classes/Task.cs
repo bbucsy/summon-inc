@@ -11,6 +11,8 @@ namespace Classes
         public bool HintReceived { get; set; }
         public bool HintRequired { get; }
 
+        public bool AssignedToBoss { get; set; }
+
         protected Task(string name, bool hintRequired)
         {
             Name = name;
