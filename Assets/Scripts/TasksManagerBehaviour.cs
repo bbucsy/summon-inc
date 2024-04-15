@@ -15,6 +15,8 @@ public class TasksManagerBehaviour : MonoBehaviour
     public int tasksToGenerate = 5;
     private TextMeshProUGUI _text;
     public event EventHandler OnAllTasksFinished;
+    public AudioSource taskFinishedSound;
+    public AudioSource windowClosedSound;
         
     // Start is called before the first frame update
     void Start()
@@ -48,10 +50,15 @@ public class TasksManagerBehaviour : MonoBehaviour
         {
             OnAllTasksFinished?.Invoke(this, EventArgs.Empty);
         }
+        else
+        {
+            taskFinishedSound.Play();
+        }
     }
         
     public void TaskWindowClosed()
     {
         OnTaskWindowClosed?.Invoke(this, EventArgs.Empty);
+        windowClosedSound.Play();
     }
 }
